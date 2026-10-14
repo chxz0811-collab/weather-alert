@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METEO & ALARM | ศูนย์ระบบเตือนภัยพิบัติระดับโลก</title>
+    
+    <!-- 1. เรียกชุดคำสั่งพื้นฐานในการสร้างลูกโลก 3 มิติจากไลบรารีส่วนกลางมารอไว้ -->
+    <script src="https://unpkg.com"></script>
+    
+    <!-- 2. เชื่อมโยงเข้าหาไฟล์ตกแต่งดีไซน์มินิมอลหรูหรา (style.css) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="workspace">
+        <!-- บล็อกสำหรับรองรับการวาดและแสดงผลลูกโลก 3 มิติ -->
+        <div id="globe-container"></div>
+
+        <!-- แผงหน้าปัดกระจกฝ้าด้านข้าง (Sidebar Panel) -->
+        <div class="sidebar">
+            <div class="header">
+                <h1>METEO & ALARM</h1>
+                <p>ระบบสภาพอากาศ 3 มิติ พร้อมแจ้งเตือนภัยพิบัติฉุกเฉิน</p>
+            </div>
+
+            <!-- ส่วนประกอบย่อยที่ 1: ค้นหาและดูสภาพอากาศทั่วโลก -->
+            <div class="component-box">
+                <div class="section-title">🌍 ตรวจสอบสภาพอากาศ Real-time</div>
+                <div class="input-group">
+                    <select id="country-select">
+                        <option value="TH">ประเทศไทย (TMD Data)</option>
+                        <option value="JP">ประเทศญี่ปุ่น</option>
+                        <option value="UK">สหราชอาณาจักร</option>
+                    </select>
+                    <select id="province-select">
+                        <option value="">เลือกจังหวัด / เมืองย่อย</option>
+                    </select>
+                </div>
+                
+                <!-- กล่องข้อความแสดงผลสภาพอากาศย่อย (จะถูกอัปเดตผ่าน js/globe.js) -->
+                <div class="weather-result" id="weather-panel">
+                    <p class="placeholder-text">กรุณาเลือกพื้นที่บนลูกโลก...</p>
+                </div>
+            </div>
+
+            <!-- ส่วนประกอบย่อยที่ 2: ระบบศูนย์ส่งสัญญาณและดักจับภัยพิบัติฉุกเฉิน -->
+            <div class="component-box">
+                <div class="section-title" style="color: #e53e3e; border-bottom-color: rgba(229, 62, 62, 0.3);">
+                    🚨 ระบบเตือนภัยพิบัติฉุกเฉิน (EMERGENCY INFOCAST)
+                </div>
+                
+                <!-- การจำลองแผงรับข้อมูลแจ้งเตือนภัยสถานการณ์อุทกภัยระดับชาติ -->
+                <div class="emergency-status-card" id="emergency-center">
+                    <div class="status-badge status-safe">🟢 สถานการณ์ปัจจุบัน: ปกติ</div>
+                    <p class="emergency-detail-text">ไม่มีสัญญาณเตือนอุทกภัยร้ายแรงในขณะนี้ ระบบของเว็บเรากำลังจัดเตรียมชุดข้อมูลและเฝ้าระวังพื้นที่เสี่ยงอย่างใกล้ชิด</p>
+                </div>
+
+                <!-- ปุ่มกดที่เปิดให้ผู้ใช้งานทั่วไปกดอนุญาตรับสัญญาณแจ้งเตือนผ่านหน้าจอมือถือ/คอม -->
+                <div class="input-group">
+                    <button id="btn-broadcast-subscribe" class="btn-emergency">🔔 เปิดรับการแจ้งเตือนภัยในพื้นที่</button>
+                </div>
+            </div>
+
+            <!-- การอ้างอิงความถูกต้องและลิขสิทธิ์ข้อมูลเปิดภาครัฐเพื่อความปลอดภัย -->
+            <div class="legal-notice">
+                🔒 อ้างอิงเกณฑ์และระบบฐานข้อมูลเปิดภาครัฐ กรมอุตุนิยมวิทยา
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. เชื่อมต่อเข้ากับไฟล์ควบคุมกลไกลูกโลก 3 มิติที่เราแยกเอาไว้ในโฟลเดอร์ js -->
+    <script src="js/globe.js"></script>
+</body>
+</html>
